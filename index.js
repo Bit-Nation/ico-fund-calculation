@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const ethers = require('ethers');
-const BigNumber = require('big.js');
+const BigNumber = require('bignumber.js');
 const winston = require('winston');
 require('winston-papertrail').Papertrail;
 
@@ -52,9 +52,11 @@ app.get('/', function (req, res) {
             investedEth = investedEth.add(amount);
             investedEth = investedEth.toString(10);
             investedEth = new BigNumber(ethers.utils.formatUnits(investedEth, 'ether'));
-
+            investedEth = investedEth.toFixed(3);
+            investedEth = new BigNumber(investedEth);
+            
             res.send({
-                collected_eth: investedEth.toFixed(3)
+                collected_eth: investedEth.toNumber()
             })
         })
         .catch(function (e) {
