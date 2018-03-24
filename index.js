@@ -12,6 +12,12 @@ const JSON_RPC_URL = process.env.JSON_RPC_URL;
 
 const ethersProvider = new ethers.providers.JsonRpcProvider(JSON_RPC_URL);
 
+//Set CORS
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
 //Logger
 const logger = new winston.Logger({
     transports: [
