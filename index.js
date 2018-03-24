@@ -54,10 +54,12 @@ app.get('/', function (req, res) {
             investedEth = new BigNumber(ethers.utils.formatUnits(investedEth, 'ether'));
 
             res.send({
-                collected_eth: investedEth.toFixed(3).toNumber()
+                collected_eth: investedEth.toFixed(3)
             })
         })
-        .catch(console.error)
+        .catch(function (e) {
+            throw e
+        })
 
 });
 
