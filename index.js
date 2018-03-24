@@ -54,7 +54,7 @@ app.get('/', function (req, res) {
             investedEth = new BigNumber(ethers.utils.formatUnits(investedEth, 'ether'));
 
             res.send({
-                collected_eth: investedEth.toFixed(3).toString()
+                collected_eth: investedEth.toFixed(3).toNumber()
             })
         })
         .catch(console.error)
